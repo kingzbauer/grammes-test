@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  janus:
+    image: janusgraph/janusgraph
+    volumes:
+      - "./gremlin-server.yaml:/opt/janusgraph/conf/gremlin-server/gremlin-server.yaml"
+      - "./sample.groovy:/opt/janusgraph/scripts/sample.groovy"
+    ports:
+      - "8182:8182"
+
+  app:
+    image: golang:1.14-buster
+    entrypoint: ["go"]
+    working_dir: /home/app
+    volumes:
+      - "./app:/home/app"
+    command:
+      - run
+      - main.go
+      - -h
+      - ws://janus:8182
+      - -d
+      - "60"
