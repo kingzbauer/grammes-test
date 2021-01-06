@@ -4,7 +4,7 @@ services:
     image: janusgraph/janusgraph
     volumes:
       - "./gremlin-server.yaml:/opt/janusgraph/conf/gremlin-server/gremlin-server.yaml"
-      - "./sample.groovy:/opt/janusgraph/scripts/sample.groovy"
+      - "./indexless.groovy:/opt/janusgraph/scripts/sample.groovy"
 
   app:
     image: golang:1.14-buster
