@@ -19,3 +19,5 @@ services:
       - ws://janus:8182
       - -d
       - "60"
+    depends_on:
+      - janus

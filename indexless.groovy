@@ -4,7 +4,7 @@ globals << [hook : [
         onStartUp: { ctx ->
           ctx.logger.info("Executed once at startup of Gremlin Server.")
           // Load graph of the gods without index
-          GraphOfTheGodsFactory.loadWithoutMixedIndex(graph)
+          GraphOfTheGodsFactory.loadWithoutMixedIndex(graph, false)
         },
         onShutDown: { ctx ->
             ctx.logger.info("Executed once at shutdown of Gremlin Server.")
