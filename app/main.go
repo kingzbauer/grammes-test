@@ -32,7 +32,7 @@ func main() {
 	handle(err)
 
 	g := grammes.Traversal()
-	query := g.V().Has("name", predicate.TextContains("'hercules'"))
+	query := g.V().Has("name", predicate.TextContains("'Jack'"))
 
 	res, err := cli.VerticesByQuery(query)
 	handle(err)
