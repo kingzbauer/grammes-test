@@ -21,6 +21,6 @@ services:
       - -h
       - ws://janus:8182
       - -d
-      - "45"
+      - "30"
     depends_on:
       - janus

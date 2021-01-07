@@ -7,7 +7,10 @@ services:
       - "./sample.groovy:/opt/janusgraph/scripts/sample.groovy"
 
   app:
-    image: golang:1.14-buster
+    image: localhost:5000/janus-app
+    build:
+      context: app/
+      dockerfile: ../Dockerfile
     entrypoint: ["go"]
     working_dir: /home/app
     volumes:
@@ -18,6 +21,6 @@ services:
       - -h
       - ws://janus:8182
       - -d
-      - "60"
+      - "30"
     depends_on:
       - janus
