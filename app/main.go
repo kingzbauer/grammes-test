@@ -32,9 +32,20 @@ func main() {
 	handle(err)
 
 	g := grammes.Traversal()
+	// Do a full-text search
 	query := g.V().Has("name", predicate.TextContains("'Jack'"))
 
 	res, err := cli.VerticesByQuery(query)
+	handle(err)
+
+	for _, v := range res {
+		log.Printf("Vertex: %v", v.Value)
+	}
+
+	// Do an exact search
+	query = g.V().Has("name", "Jack")
+
+	res, err = cli.VerticesByQuery(query)
 	handle(err)
 
 	for _, v := range res {

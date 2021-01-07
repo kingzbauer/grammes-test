@@ -13,7 +13,13 @@ def createSchema() {
   // create name mixed index
   mgmt.buildIndex('name', Vertex.class).addKey(name).buildMixedIndex('search')
 
+  // add a composite index
+  mgmt.buildIndex('nameComposite', Vertex.class).addKey(name).buildCompositeIndex()
   mgmt.commit()
+
+  // Wait for the indices to become available
+  ManagementSystem.awaitGraphIndexStatus(graph, 'name').status(SchemaStatus.REGISTERED, SchemaStatus.ENABLED).call()
+  ManagementSystem.awaitGraphIndexStatus(graph, 'nameComposite').status(SchemaStatus.REGISTERED, SchemaStatus.ENABLED).call()
 }
 
 def initGraph() {
